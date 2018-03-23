@@ -1,16 +1,14 @@
-import { REGISTER, LOGGED_IN } from '../actions';
+import { combineReducers } from 'redux';
 import { reducer as FormReducer } from 'redux-form';
 
-const initialState = {
-  jokes: [],
-  auth: { authenticated: false },
-  form: FormReducer,
-};
+import { AUTHENTICATION_ERROR, REGISTER, LOGGED_IN, GET_JOKES } from '../actions';
 
-export const reducer = (state = initialState, action) => {
+const AuthReducer = (state = { authenticated: false, message: '' }, action) => {
   switch (action.type) {
+    case AUTHENTICATION_ERROR:
+      return { ...state, message: action.payload };
     case REGISTER:
-      return state;
+      return { ...state, message: 'Registered' };
     case LOGGED_IN:
       return { ...state, auth: { authenticated: true } };
     default:
@@ -18,4 +16,19 @@ export const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+const JokeReducer = (state = [], action) => {
+  switch (action.type) {
+    case GET_JOKES:
+      return state;
+    default:
+      return state;
+  }
+};
+
+const rootReducer = combineReducers({
+  auth: AuthReducer,
+  jokes: JokeReducer,
+  form: FormReducer,
+});
+
+export default rootReducer;

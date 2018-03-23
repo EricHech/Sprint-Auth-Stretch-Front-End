@@ -1,25 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { registerzzz } from '../Redux/actions';
+import { register } from '../Redux/actions';
 import './register.css';
 
 class Register extends Component {
-  // state = {
-  //   error: '',
-  // }
 
-  // handleFormSubmit = (username, password, confirmPassword) => {
-  //   if (password === confirmPassword) {
-  //     this.props.register(username, password, this.props.history);
-  //   } else this.setState({ error: 'Passwords do not match' })
-  // };
   handleFormSubmit = ({ username, password, confirmPassword }) => {
-    this.props.register(username, password, confirmPassword, this.props.history);
-  }
+      this.props.register(username, password, confirmPassword, this.props.history);
+  };
 
   renderAlert = () => {
-    if (this.props.error) return <h3>{this.props.error}</h3>;
+    if (this.props.message) return <h3>{this.props.message}</h3>;
   };
 
   render() {
@@ -50,13 +42,13 @@ class Register extends Component {
 
 const mapStateToProps = state => {
   return {
-    error: state.auth.error,
+    message: state.auth.message,
   };
 };
 
-Register = connect(mapStateToProps, { registerzzz })(Register);
+Register = connect(mapStateToProps, { register })(Register);
 
 export default reduxForm({
-  form: 'register',
+  form: 'register', // Unique name for the form
   fields: ['username', 'password', 'confirmPassword'],
 })(Register);
