@@ -9,31 +9,27 @@ import {
   GET_JOKES,
 } from '../actions';
 
-const authenticationState = {
-  authenticated: false,
-};
-
-const AuthReducer = (state = authenticationState, action) => {
+const AuthReducer = (auth = {}, action) => {
   switch (action.type) {
     case AUTHENTICATION_ERROR:
-      return { ...state, message: action.payload };
+      return { ...auth, message: action.payload };
     case REGISTER:
-      return { ...state, message: 'Registered' };
+      return { ...auth, message: 'Registered' };
     case LOGIN:
-      return { ...state, authenticated: true };
+      return { ...auth, authenticated: true };
     case LOGOUT:
-      return { ...state, authenticated: false };
+      return { ...auth, authenticated: false };
     default:
-      return state;
+      return auth;
   }
 };
 
-const JokeReducer = (state = [], action) => {
+const JokeReducer = (jokes = [], action) => {
   switch (action.type) {
     case GET_JOKES:
-      return [...state, ...action.payload];
+      return [...jokes, ...action.payload];
     default:
-      return state;
+      return jokes;
   }
 };
 

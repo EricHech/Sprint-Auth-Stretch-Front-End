@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import reducer from './Redux/reducers';
 
+import RequireAuth from './HOC/requireAuth';
 import Header from './Header/header';
 import SignUp from './Register/register';
 import Login from './Login/login';
@@ -31,10 +32,9 @@ ReactDOM.render(
         <Route path="/register" component={SignUp} />
         <Route path="/login" component={Login} />
         <Route path="/logout" component={Logout} />
-        <Route path="/jokes" component={DisplayJokes} />
+        <Route path="/jokes" component={RequireAuth(DisplayJokes)} />
       </div>
     </Router>
   </Provider>,
   document.getElementById('root')
 );
-//<Route path="/jokes" component={RequireAuth(DisplayJokes)} />

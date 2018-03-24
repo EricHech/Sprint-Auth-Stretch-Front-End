@@ -4,7 +4,7 @@ import { getJokes } from '../Redux/actions';
 import './displayJokes.css';
 
 class DisplayJokes extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.getJokes();
   }
 

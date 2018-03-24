@@ -10,10 +10,11 @@ export const LOGOUT = 'LOGOUT';
 export const GET_JOKES = 'GET_JOKES';
 
 export const authError = error => {
-  return {
-    type: AUTHENTICATION_ERROR,
-    payload: error,
-  };
+  if (error)
+    return {
+      type: AUTHENTICATION_ERROR,
+      payload: error,
+    };
 };
 
 export const register = (username, password, confirmPassword, history) => {
@@ -44,7 +45,7 @@ export const login = (username, password, history) => {
       .then(res => {
         localStorage.setItem('token', res.data.token);
         dispatch({ type: LOGIN });
-        history.push('/users');
+        history.push('/jokes');
       })
       .catch(err => {
         if (err.response.data.error)
@@ -70,7 +71,16 @@ export const getJokes = () => {
         });
       })
       .catch(err => {
-        if (err.response) console.log(err.response);
+        dispatch(authError('Error getting jokes.'));
       });
   };
+};
+
+export const checkLogin = () => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    return { type: LOGIN };
+  } else {
+    return { type: LOGOUT };
+  }
 };

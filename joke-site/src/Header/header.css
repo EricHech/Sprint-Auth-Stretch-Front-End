@@ -16,3 +16,23 @@
 .App-intro {
   font-size: large;
 }
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-buttons {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px black solid;
+  border-radius: 5px;
+  background: black;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+  color: rgb(152, 152, 152);
+}
