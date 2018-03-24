@@ -27,7 +27,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div>
-        <Route exact path="/" component={Header} />
+        <Route path="/" component={Header} />
         <Route path="/register" component={SignUp} />
         <Route path="/login" component={Login} />
         <Route path="/logout" component={Logout} />

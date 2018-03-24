@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { logout } from '../Redux/actions/index';
 import './logout.css';
 
 class Logout extends Component {
+  componentWillMount() {
+    this.props.logout();
+  }
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+    return <div>You have logged out.</div>;
   }
 }
 
-export default Logout;
+export default connect(null, { logout })(Logout);

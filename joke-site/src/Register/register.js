@@ -18,7 +18,7 @@ class Register extends Component {
     const { handleSubmit } = this.props;
     return (
       <div>
-        <div>Sign Up</div>
+        <div>Register</div>
         <form onSubmit={handleSubmit(this.handleFormSubmit)}>
           <fieldset>
             <label>Username:</label>
@@ -32,7 +32,7 @@ class Register extends Component {
             <label>Confirm Password:</label>
             <Field name="confirmPassword" component="input" type="password" />
           </fieldset>
-          <button action="submit">Sign Up</button>
+          <button action="submit">Submit</button>
           {this.renderAlert()}
         </form>
       </div>
